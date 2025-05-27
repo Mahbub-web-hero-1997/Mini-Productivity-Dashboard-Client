@@ -11,6 +11,7 @@ const AuthProvider = ({ children }) => {
     const fetchInitialData = async () => {
       try {
         const userRes = await axiosPublic.get("/user/currentUser");
+
         setUser(userRes.data?.data);
       } catch (err) {
         console.error("Error fetching data:", err);
@@ -23,6 +24,7 @@ const AuthProvider = ({ children }) => {
   }, []);
   const authInfo = {
     user,
+    setUser,
     loading,
   };
   return (

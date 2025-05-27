@@ -1,5 +1,5 @@
-import React from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import React, { useContext } from "react";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import {
   MdDashboard,
   MdEventAvailable,
@@ -9,8 +9,29 @@ import {
 import { BsFillPatchExclamationFill } from "react-icons/bs";
 import { HiBars3BottomLeft } from "react-icons/hi2";
 import { FaHandsHelping } from "react-icons/fa";
+import UseAxios from "../hook/UseAxios";
+import Swal from "sweetalert2";
+import { AuthContext } from "../globalState/AuthProvider";
 
 const Root = () => {
+  const useAxios = UseAxios();
+  const { setUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    useAxios.post("/user/logout").then((res) => {
+      if (res) {
+        setUser(res.data);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Logout successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/login");
+      }
+    });
+  };
   const items = (
     <>
       <li className="text-md font-semibold">
@@ -93,20 +114,14 @@ const Root = () => {
         </NavLink>
       </li>
       <li className="text-md font-semibold mt-5">
-        <NavLink
-          className={({ isActive }) =>
-            isActive
-              ? "text-[#ff6867] bg-white w-[95%] px- block rounded-xl p-3 flex items-center gap-2"
-              : "text-white flex items-center gap-2"
-          }
-          to="/logout"
-        >
-          <MdLogout className="text-4xl" />
-          Logout
-        </NavLink>
+        <MdLogout
+          onClick={() => handleLogout()}
+          className="text-4xl cursor-pointer"
+        />
       </li>
     </>
   );
+
   return (
     <>
       <div className="flex p-1 ">

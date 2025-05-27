@@ -35,7 +35,9 @@ const Login = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="w-full md:w-1/2 flex flex-col gap-6 items-center justify-center px-6 md:px-20 bg-white"
       >
-        <h2 className="text-3xl font-bold text-[#ff6767] mb-4">Login</h2>
+        <h2 className="text-3xl font-bold text-[#ff6767] mb-4">
+          Login First to continue
+        </h2>
 
         <input
           {...register("email", { required: true, maxLength: 50 })}
