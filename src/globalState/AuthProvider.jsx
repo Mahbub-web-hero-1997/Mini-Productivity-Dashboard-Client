@@ -13,7 +13,8 @@ const AuthProvider = ({ children }) => {
       try {
         // Fetch news
         const taskRes = await useAxios.get("/task/all");
-        setTask(taskRes.data?.data|| []);      
+        setTask(taskRes.data?.data || []);
+        console.log(task);
         // Fetch User
         const userRes = await useAxios.get("/user/currentUser");
         setUser(userRes.data?.data);

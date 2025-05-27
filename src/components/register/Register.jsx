@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+
 const Register = () => {
   const { register, handleSubmit, watch } = useForm();
   const navigate = useNavigate();
@@ -12,12 +13,9 @@ const Register = () => {
       .post(
         "https://simple-task-server-eight.vercel.app/api/v1/user/register",
         data,
-        {
-          withCredentials: true,
-        }
+        { withCredentials: true }
       )
       .then((res) => {
-        console.log(res.data);
         if (res) {
           Swal.fire({
             position: "center",
@@ -26,54 +24,50 @@ const Register = () => {
             showConfirmButton: false,
             timer: 1500,
           });
+          navigate("/");
         }
-        navigate("/");
       })
       .catch((error) => {
-        console.error("Login Failed:", error.response?.data || error.message);
         Swal.fire({
           position: "center",
-          icon: "success",
-          title: `${error.response?.data?.message}||"User Registration Failed"`,
+          icon: "error",
+          title: error.response?.data?.message || "User Registration Failed",
           showConfirmButton: false,
-          timer: 1500,
+          timer: 2000,
         });
       });
   };
+
   return (
-    <div className="flex h-screen">
-      {/* Left Form Section */}
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-[#fff] to-[#ffe5e5] px-4">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full md:w-1/2 flex flex-col gap-6 items-center justify-center px-6 md:px-20 bg-white"
+        className="bg-white shadow-2xl p-10 rounded-xl w-full max-w-md flex flex-col gap-6"
       >
-        <h2 className="text-3xl font-bold text-[#ff6767] mb-4">
-          Register Here!
+        <h2 className="text-3xl font-extrabold text-[#ff6767] text-center">
+          Create Your Account
         </h2>
 
-        {/* Full Name */}
         <input
           {...register("fullName", { required: true })}
-          className="border border-[#ff6767] rounded-md p-3 w-full md:w-3/4 outline-none focus:ring-2 focus:ring-[#ff6767] transition"
           placeholder="Full Name"
+          className="border border-gray-300 rounded-lg p-3 outline-none focus:ring-2 focus:ring-[#ff6767] transition"
         />
 
-        {/* Email */}
         <input
           {...register("email", { required: true, maxLength: 50 })}
-          className="border border-[#ff6767] rounded-md p-3 w-full md:w-3/4 outline-none focus:ring-2 focus:ring-[#ff6767] transition"
-          placeholder="example@gmail.com"
+          placeholder="Email Address"
+          type="email"
+          className="border border-gray-300 rounded-lg p-3 outline-none focus:ring-2 focus:ring-[#ff6767] transition"
         />
 
-        {/* Password */}
         <input
           {...register("password", { required: true, minLength: 6 })}
           type="password"
-          className="border border-[#ff6767] rounded-md p-3 w-full md:w-3/4 outline-none focus:ring-2 focus:ring-[#ff6767] transition"
           placeholder="Password"
+          className="border border-gray-300 rounded-lg p-3 outline-none focus:ring-2 focus:ring-[#ff6767] transition"
         />
 
-        {/* Confirm Password */}
         <input
           {...register("confirmPassword", {
             required: true,
@@ -81,30 +75,26 @@ const Register = () => {
               value === watch("password") || "Passwords do not match",
           })}
           type="password"
-          className="border border-[#ff6767] rounded-md p-3 w-full md:w-3/4 outline-none focus:ring-2 focus:ring-[#ff6767] transition"
           placeholder="Confirm Password"
+          className="border border-gray-300 rounded-lg p-3 outline-none focus:ring-2 focus:ring-[#ff6767] transition"
         />
 
         <input
           type="submit"
           value="Register"
-          className="rounded-md p-3 w-full md:w-3/4 cursor-pointer bg-[#ff6767] hover:bg-[#ff4d4d] text-white text-lg font-semibold transition-transform transform hover:scale-105"
+          className="bg-[#ff6767] hover:bg-[#ff4d4d] text-white rounded-lg py-3 font-semibold cursor-pointer transition-transform hover:scale-105"
         />
 
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-center text-gray-600">
           Already have an account?{" "}
-          <Link to="/login" className="text-[#ff6767] font-medium">
+          <Link
+            to="/login"
+            className="text-[#ff6767] font-medium hover:underline"
+          >
             Login
           </Link>
         </p>
       </form>
-
-      {/* Right Side Decoration */}
-      <div className="hidden md:block w-1/2 h-full rounded-tl-full rounded-bl-full bg-[#ff6767] flex items-center justify-center">
-        <h1 className="text-white text-4xl font-bold px-10 text-center leading-snug">
-          Empower Your Productivity <br /> With a Strong Start!
-        </h1>
-      </div>
     </div>
   );
 };
