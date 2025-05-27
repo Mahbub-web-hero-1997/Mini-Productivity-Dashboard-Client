@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import {
   MdDashboard,
   MdEventAvailable,
@@ -136,33 +136,36 @@ const Root = () => {
               src={profilePicture}
               alt="Profile"
             />
-            <button
+            <Link
+              to="/changePhoto"
               className="absolute bottom-0 right-0  p-1 rounded-full shadow-md cursor-pointer bg-[#ff6767] text-white transition border-2 border-[#ff6767]"
               title="Edit"
             >
               <FaEdit />
-            </button>
+            </Link>
           </div>
 
           <div className="flex items-center justify-center gap-1 -mt-18">
             <h2 className="text-2xl font-semibold text-white text-center">
               {fullName}
             </h2>
-            <button
+            <Link
+              to="/changeName"
               className="text-white cursor-pointer transition"
               title="Edit Name"
             >
               <FaEdit />
-            </button>
+            </Link>
           </div>
           <div className="flex items-center justify-center gap-2 mb-5">
             <p className="text-xl text-white text-center">{email}</p>
-            <button
+            <Link
+              to="/changeEmail"
               className="text-white cursor-pointer transition"
               title="Edit Email"
             >
               <FaEdit />
-            </button>
+            </Link>
           </div>
           <ul className="text-white ">{items}</ul>
         </div>

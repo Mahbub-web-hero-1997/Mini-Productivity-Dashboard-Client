@@ -52,6 +52,10 @@ const router = createBrowserRouter([
             `https://simple-task-server-eight.vercel.app/api/v1/task/single/${params.id}`
           ),
       },
+      {
+        path: "*",
+        element: <ComingSoon />,
+      },
     ],
   },
   {
@@ -61,10 +65,6 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register />,
-  },
-  {
-    path: "*",
-    element: <ComingSoon />,
   },
 ]);
 
