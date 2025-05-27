@@ -22,9 +22,9 @@ A responsive and modern task management web application built with React. Users 
 - ⚙️ **Settings & Help Sections**
 - 💡 **Responsive Design**
   - Fully optimized for desktop, tablet, and mobile
+## 🚀 Folder Structure
+sr
 
----## 🚀 Folder Structure
-src/
 │
 ├── assets/                # Static files (images, etc.)
 ├── component/             # All React UI components
