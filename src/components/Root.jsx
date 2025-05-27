@@ -114,7 +114,7 @@ const Root = () => {
           <img src="#" alt="" />
           <ul className="text-white ">{items}</ul>
         </div>
-        <div>
+        <div className="w-full">
           <Outlet />
         </div>
       </div>
