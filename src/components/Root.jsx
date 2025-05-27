@@ -50,7 +50,6 @@ const Root = () => {
           Dashboard
         </NavLink>
       </li>
-
       <li className="text-md font-semibold mt-5">
         <NavLink
           className={({ isActive }) =>
@@ -58,10 +57,23 @@ const Root = () => {
               ? "text-[#ff6867] bg-white w-[95%] px- block rounded-xl p-3 flex items-center gap-2"
               : "text-white flex items-center gap-2"
           }
-          to="/vitalTask"
+          to="/allTasks"
+        >
+          <HiBars3BottomLeft className="text-4xl" />
+          All-Tasks
+        </NavLink>
+      </li>
+      <li className="text-md font-semibold mt-5">
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? "text-[#ff6867] bg-white w-[95%] px- block rounded-xl p-3 flex items-center gap-2"
+              : "text-white flex items-center gap-2"
+          }
+          to="/incompleteTask"
         >
           <BsFillPatchExclamationFill className="text-4xl" />
-          Vital Task
+          Incomplete-Task
         </NavLink>
       </li>
       <li className="text-md font-semibold mt-5">
@@ -74,22 +86,10 @@ const Root = () => {
           to="/myTask"
         >
           <MdEventAvailable className="text-4xl" />
-          My Task
+          Completed-Task
         </NavLink>
       </li>
-      <li className="text-md font-semibold mt-5">
-        <NavLink
-          className={({ isActive }) =>
-            isActive
-              ? "text-[#ff6867] bg-white w-[95%] px- block rounded-xl p-3 flex items-center gap-2"
-              : "text-white flex items-center gap-2"
-          }
-          to="/category"
-        >
-          <HiBars3BottomLeft className="text-4xl" />
-          Task Categories
-        </NavLink>
-      </li>
+
       <li className="text-md font-semibold mt-5">
         <NavLink
           className={({ isActive }) =>
