@@ -6,7 +6,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState([]);
   const [loading, setLoading] = useState(false);
   const axiosPublic = UseAxios();
-  console.log(user);
+  //   console.log(user);
   useEffect(() => {
     const fetchInitialData = async () => {
       try {
