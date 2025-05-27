@@ -23,7 +23,29 @@ A responsive and modern task management web application built with React. Users 
 - 💡 **Responsive Design**
   - Fully optimized for desktop, tablet, and mobile
 
----
+---## 🚀 Folder Structure
+src/
+│
+├── assets/                # Static files (images, etc.)
+├── component/             # All React UI components
+│   ├── Header/            # Header/Nav component
+│   ├── Login.jsx          # User login page
+│   ├── Register.jsx       # User registration page
+│   ├── AllTasks.jsx       # Displays all tasks
+│   ├── CompletedTask.jsx  # Displays completed tasks
+│   ├── IncompleteTask.jsx # Displays incomplete tasks
+│
+├── globalState/           # Global context for Auth and App state
+│   └── AuthProvider.jsx
+│
+├── hook/                  # Custom React hooks
+│   └── UseAxios.js
+│
+├── pages/                 # Route-level page components (optional)
+│
+├── App.jsx                # Main App component with routes
+├── main.jsx               # Entry point
+└── index.css              # TailwindCSS + DaisyUI config
 
 ## 🛠️ Tech Stack
 
