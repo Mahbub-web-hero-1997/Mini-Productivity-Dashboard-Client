@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../globalState/AuthProvider";
+
 const Login = () => {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
@@ -36,50 +37,51 @@ const Login = () => {
         alert(error.response?.data?.message || "Login failed");
       });
   };
+
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen overflow-hidden">
       {/* Left Form Section */}
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full md:w-1/2 flex flex-col gap-6 items-center justify-center px-6 md:px-20 bg-white"
+        className="w-full md:w-1/2 mx-auto flex flex-col gap-6 items-center justify-center px-6 md:px-20 bg-white shadow-xl z-10"
       >
-        <h2 className="text-3xl font-bold text-[#ff6767] mb-4">
-          Login First to continue
+        <h2 className="text-4xl font-extrabold text-[#ff6767] mb-4 text-center">
+          Login First
         </h2>
+        <p className="text-sm text-gray-500 mb-4 text-center">
+          Login to manage your tasks and productivity
+        </p>
 
         <input
           {...register("email", { required: true, maxLength: 50 })}
-          className="border border-[#ff6767] rounded-md p-3 w-full md:w-3/4 outline-none focus:ring-2 focus:ring-[#ff6767] transition"
+          className="border border-gray-300 rounded-lg p-3 w-full md:w-3/4 outline-none focus:ring-2 focus:ring-[#ff6767] transition shadow-sm"
           placeholder="example@gmail.com"
+          type="email"
         />
 
         <input
           {...register("password", { required: true })}
           type="password"
-          className="border border-[#ff6767] rounded-md p-3 w-full md:w-3/4 outline-none focus:ring-2 focus:ring-[#ff6767] transition"
+          className="border border-gray-300 rounded-lg p-3 w-full md:w-3/4 outline-none focus:ring-2 focus:ring-[#ff6767] transition shadow-sm"
           placeholder="Password"
         />
 
         <input
           type="submit"
           value="Login"
-          className="rounded-md p-3 w-full md:w-3/4 cursor-pointer bg-[#ff6767] hover:bg-[#ff4d4d] text-white text-lg font-semibold transition-transform transform hover:scale-105"
+          className="rounded-lg p-3 w-full md:w-3/4 cursor-pointer bg-[#ff6767] hover:bg-[#ff4d4d] text-white text-lg font-semibold transition-transform transform hover:scale-105"
         />
 
-        <p className="text-sm text-gray-500">
-          Don't have an account?{" "}
-          <Link to="/register" className="text-[#ff6767] font-medium">
+        <p className="text-sm text-gray-600">
+          Don’t have an account?{" "}
+          <Link
+            to="/register"
+            className="text-[#ff6767] font-semibold hover:underline"
+          >
             Sign up
           </Link>
         </p>
       </form>
-
-      {/* Right Side Decoration */}
-      <div className="hidden md:block w-1/2 h-full rounded-tl-full rounded-bl-full bg-[#ff6767] flex items-center justify-center">
-        <h1 className="text-white text-4xl font-bold px-10 text-center leading-snug">
-          Your Productivity Starts <br /> With a Great Login!
-        </h1>
-      </div>
     </div>
   );
 };
