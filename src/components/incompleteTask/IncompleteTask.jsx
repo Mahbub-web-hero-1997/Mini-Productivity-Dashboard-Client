@@ -3,10 +3,11 @@ import { FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import UseAxios from "../../hook/UseAxios";
 import Swal from "sweetalert2";
+import { MdEditNote } from "react-icons/md";
 const IncompleteTask = ({ tsk, index }) => {
   const useAxios = UseAxios();
   const [status, setStatus] = useState(tsk.status);
-
+  // Status Change function
   const handleCompleteTask = async (id) => {
     try {
       useAxios
@@ -22,6 +23,7 @@ const IncompleteTask = ({ tsk, index }) => {
       console.error("Failed to update task status:", error);
     }
   };
+  // Delete Function
   const handleDeleteTask = (id) => {
     try {
       useAxios
@@ -44,6 +46,10 @@ const IncompleteTask = ({ tsk, index }) => {
       console.error("Failed to update task status:", error);
     }
   };
+  // Update Function
+  const handleTaskUpdate = (id) => {
+    console.log(id);
+  };
   return (
     <tr>
       <th>{index + 1}</th>
@@ -56,7 +62,15 @@ const IncompleteTask = ({ tsk, index }) => {
       >
         {status}
       </td>
-
+      <td>
+        <Link
+          onClick={() => handleTaskUpdate(tsk._id)}
+          className="cursor-pointer"
+          to={`/update/${tsk._id}`}
+        >
+          <MdEditNote className="text-3xl text-green-700" />
+        </Link>
+      </td>
       <td className="flex gap-4 items-center text-md">
         {status === "pending" && (
           <button
@@ -68,7 +82,6 @@ const IncompleteTask = ({ tsk, index }) => {
         )}
         <button
           onClick={() => handleDeleteTask(tsk._id)}
-          to="#"
           className="text-red-600 hover:text-red-800 text-xl cursor-pointer"
         >
           <FaTrash />

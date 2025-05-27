@@ -8,6 +8,8 @@ import AddTask from "../components/dashboard/AddTask";
 import CompletedTasks from "../components/completedTask/CompletedTasks";
 import IncompleteTask from "../components/incompleteTask/IncompleteTasks";
 import AllTasks from "../components/allTasks/AllTasks";
+import UpdateTask from "../components/updateTask/UpdateTask";
+import ComingSoon from "../components/commingSoon/CommingSoon";
 
 const router = createBrowserRouter([
   {
@@ -31,7 +33,7 @@ const router = createBrowserRouter([
         element: <CompletedTasks />,
       },
       {
-        path: "/myTask/:id",
+        path: "/myTask",
         element: <CompletedTasks />,
       },
       {
@@ -42,6 +44,12 @@ const router = createBrowserRouter([
         path: "/allTasks",
         element: <AllTasks />,
       },
+      {
+        path: "/update/:id",
+        element: <UpdateTask />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/api/v1/task/single/${params.id}`),
+      },
     ],
   },
   {
@@ -51,6 +59,10 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register />,
+  },
+  {
+    path: "*",
+    element: <ComingSoon />,
   },
 ]);
 

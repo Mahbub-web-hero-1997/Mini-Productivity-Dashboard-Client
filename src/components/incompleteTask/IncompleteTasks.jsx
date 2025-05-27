@@ -17,6 +17,7 @@ const IncompleteTasks = () => {
               <th>Title</th>
               <th>Description</th>
               <th>Status</th>
+              <th>Update</th>
               <th>Action</th>
             </tr>
           </thead>

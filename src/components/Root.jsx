@@ -127,7 +127,7 @@ const Root = () => {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <div className="flex p-1 mt-15 ">
         <div className="w-full md:w-1/5 border bg-[#ff6767] p-4 h-[calc(100vh-130px)] relative">
           <div className="relative w-[120px] h-[120px] top-[-75px] mx-auto">
