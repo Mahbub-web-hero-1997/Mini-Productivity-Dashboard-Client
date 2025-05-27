@@ -8,14 +8,17 @@ import {
 } from "react-icons/md";
 import { BsFillPatchExclamationFill } from "react-icons/bs";
 import { HiBars3BottomLeft } from "react-icons/hi2";
-import { FaHandsHelping } from "react-icons/fa";
+import { FaEdit, FaHandsHelping } from "react-icons/fa";
 import UseAxios from "../hook/UseAxios";
 import Swal from "sweetalert2";
 import { AuthContext } from "../globalState/AuthProvider";
+import Header from "./header/Header";
 
 const Root = () => {
   const useAxios = UseAxios();
-  const { setUser } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
+  const { fullName, email, profilePicture } = user;
+  console.log(fullName, email, profilePicture);
   const navigate = useNavigate();
   const handleLogout = () => {
     useAxios.post("/user/logout").then((res) => {
@@ -124,9 +127,43 @@ const Root = () => {
 
   return (
     <>
-      <div className="flex p-1 ">
-        <div className="w-full md:w-1/5 border bg-[#ff6767] p-4 h-screen">
-          <img src="#" alt="" />
+      <Header />
+      <div className="flex p-1 mt-15 ">
+        <div className="w-full md:w-1/5 border bg-[#ff6767] p-4 h-[calc(100vh-130px)] relative">
+          <div className="relative w-[120px] h-[120px] top-[-75px] mx-auto">
+            <img
+              className="rounded-full w-full h-full object-cover border-4 border-[#ff6767]"
+              src={profilePicture}
+              alt="Profile"
+            />
+            <button
+              className="absolute bottom-0 right-0  p-1 rounded-full shadow-md cursor-pointer bg-[#ff6767] text-white transition border-2 border-[#ff6767]"
+              title="Edit"
+            >
+              <FaEdit />
+            </button>
+          </div>
+
+          <div className="flex items-center justify-center gap-1 -mt-18">
+            <h2 className="text-2xl font-semibold text-white text-center">
+              {fullName}
+            </h2>
+            <button
+              className="text-white cursor-pointer transition"
+              title="Edit Name"
+            >
+              <FaEdit />
+            </button>
+          </div>
+          <div className="flex items-center justify-center gap-2 mb-5">
+            <p className="text-xl text-white text-center">{email}</p>
+            <button
+              className="text-white cursor-pointer transition"
+              title="Edit Email"
+            >
+              <FaEdit />
+            </button>
+          </div>
           <ul className="text-white ">{items}</ul>
         </div>
         <div className="w-full">

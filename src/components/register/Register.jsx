@@ -44,7 +44,7 @@ const Register = () => {
         className="w-full md:w-1/2 flex flex-col gap-6 items-center justify-center px-6 md:px-20 bg-white"
       >
         <h2 className="text-3xl font-bold text-[#ff6767] mb-4">
-          Register to continue
+          Register Here!
         </h2>
 
         {/* Full Name */}

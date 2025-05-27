@@ -9,8 +9,7 @@ const router = createBrowserRouter([
     path: "/",
     element: (
       <PrivateRoute>
-        <Root />
-        //{" "}
+        <Root />{" "}
       </PrivateRoute>
     ),
     children: [],
