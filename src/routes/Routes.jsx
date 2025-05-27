@@ -48,7 +48,9 @@ const router = createBrowserRouter([
         path: "/update/:id",
         element: <UpdateTask />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/api/v1/task/single/${params.id}`),
+          fetch(
+            `https://simple-task-server-eight.vercel.app/api/v1/task/single/${params.id}`
+          ),
       },
     ],
   },

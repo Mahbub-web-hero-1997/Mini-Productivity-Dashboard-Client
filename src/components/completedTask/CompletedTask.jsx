@@ -10,9 +10,12 @@ const completedTask = ({ tsk, index }) => {
   const handleCompleteTask = async (id) => {
     try {
       useAxios
-        .patch(`http://localhost:5000/api/v1/task/status/${id}`, {
-          status: "completed",
-        })
+        .patch(
+          `https://simple-task-server-eight.vercel.app/api/v1/task/status/${id}`,
+          {
+            status: "completed",
+          }
+        )
         .then((res) => {
           if (res.data) {
             window.location.reload();

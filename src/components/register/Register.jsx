@@ -9,9 +9,13 @@ const Register = () => {
 
   const onSubmit = (data) => {
     axios
-      .post("http://localhost:5000/api/v1/user/register", data, {
-        withCredentials: true,
-      })
+      .post(
+        "https://simple-task-server-eight.vercel.app/api/v1/user/register",
+        data,
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         console.log(res.data);
         if (res) {

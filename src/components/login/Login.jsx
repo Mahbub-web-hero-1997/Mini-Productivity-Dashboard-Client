@@ -11,9 +11,13 @@ const Login = () => {
 
   const onSubmit = (data) => {
     axios
-      .post("http://localhost:5000/api/v1/user/login", data, {
-        withCredentials: true,
-      })
+      .post(
+        "https://simple-task-server-eight.vercel.app/api/v1/user/login",
+        data,
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         if (res) {
           setUser(res.data);

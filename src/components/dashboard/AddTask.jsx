@@ -18,9 +18,10 @@ const AddTask = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        navigate("/");
         setTimeout(() => {
-          navigate("/");
-        }, 1500);
+          window.location.reload();
+        }, 1000);
       }
     });
   };
