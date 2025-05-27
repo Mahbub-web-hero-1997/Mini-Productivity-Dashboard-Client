@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import {
   MdDashboard,
@@ -12,14 +12,14 @@ import { FaEdit, FaHandsHelping } from "react-icons/fa";
 import UseAxios from "../hook/UseAxios";
 import Swal from "sweetalert2";
 import { AuthContext } from "../globalState/AuthProvider";
-import Header from "./header/Header";
 
 const Root = () => {
   const useAxios = UseAxios();
   const { user, setUser } = useContext(AuthContext);
-  const { fullName, email, profilePicture } = user;
-  console.log(fullName, email, profilePicture);
+  const { fullName, email, profilePicture } = user || {};
   const navigate = useNavigate();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   const handleLogout = () => {
     useAxios.post("/user/logout").then((res) => {
       if (res) {
@@ -35,145 +35,151 @@ const Root = () => {
       }
     });
   };
+
   const items = (
     <>
-      <li className="text-md font-semibold">
+      <li>
         <NavLink
           to="/"
           className={({ isActive }) =>
             isActive
-              ? "text-[#ff6867] bg-white w-[95%] px- block rounded-xl p-3 flex items-center gap-2"
-              : "text-white flex items-center gap-2"
+              ? "bg-white text-[#ff6867] rounded-xl p-3 flex items-center gap-2"
+              : "text-white flex items-center gap-2 p-3"
           }
         >
-          <MdDashboard className="text-4xl" />
-          Dashboard
+          <MdDashboard className="text-2xl" /> Dashboard
         </NavLink>
       </li>
-      <li className="text-md font-semibold mt-5">
+      <li>
         <NavLink
-          className={({ isActive }) =>
-            isActive
-              ? "text-[#ff6867] bg-white w-[95%] px- block rounded-xl p-3 flex items-center gap-2"
-              : "text-white flex items-center gap-2"
-          }
           to="/allTasks"
-        >
-          <HiBars3BottomLeft className="text-4xl" />
-          All-Tasks
-        </NavLink>
-      </li>
-      <li className="text-md font-semibold mt-5">
-        <NavLink
           className={({ isActive }) =>
             isActive
-              ? "text-[#ff6867] bg-white w-[95%] px- block rounded-xl p-3 flex items-center gap-2"
-              : "text-white flex items-center gap-2"
+              ? "bg-white text-[#ff6867] rounded-xl p-3 flex items-center gap-2"
+              : "text-white flex items-center gap-2 p-3"
           }
+        >
+          <HiBars3BottomLeft className="text-2xl" /> All Tasks
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
           to="/incompleteTask"
-        >
-          <BsFillPatchExclamationFill className="text-4xl" />
-          Incomplete-Task
-        </NavLink>
-      </li>
-      <li className="text-md font-semibold mt-5">
-        <NavLink
           className={({ isActive }) =>
             isActive
-              ? "text-[#ff6867] bg-white w-[95%] px- block rounded-xl p-3 flex items-center gap-2"
-              : "text-white flex items-center gap-2"
+              ? "bg-white text-[#ff6867] rounded-xl p-3 flex items-center gap-2"
+              : "text-white flex items-center gap-2 p-3"
           }
+        >
+          <BsFillPatchExclamationFill className="text-2xl" /> Incomplete Tasks
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
           to="/myTask"
-        >
-          <MdEventAvailable className="text-4xl" />
-          Completed-Task
-        </NavLink>
-      </li>
-
-      <li className="text-md font-semibold mt-5">
-        <NavLink
           className={({ isActive }) =>
             isActive
-              ? "text-[#ff6867] bg-white w-[95%] px- block rounded-xl p-3 flex items-center gap-2"
-              : "text-white flex items-center gap-2"
+              ? "bg-white text-[#ff6867] rounded-xl p-3 flex items-center gap-2"
+              : "text-white flex items-center gap-2 p-3"
           }
+        >
+          <MdEventAvailable className="text-2xl" /> Completed Tasks
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
           to="/settings"
-        >
-          <MdSettings className="text-4xl" />
-          Settings
-        </NavLink>
-      </li>
-      <li className="text-md font-semibold mt-5">
-        <NavLink
           className={({ isActive }) =>
             isActive
-              ? "text-[#ff6867] bg-white w-[95%] px- block rounded-xl p-3 flex items-center gap-2"
-              : "text-white flex items-center gap-2"
+              ? "bg-white text-[#ff6867] rounded-xl p-3 flex items-center gap-2"
+              : "text-white flex items-center gap-2 p-3"
           }
-          to="/help"
         >
-          <FaHandsHelping className="text-4xl" />
-          Help
+          <MdSettings className="text-2xl" /> Settings
         </NavLink>
       </li>
-      <li className="text-md font-semibold mt-5">
-        <MdLogout
-          onClick={() => handleLogout()}
-          className="text-4xl cursor-pointer"
-        />
+      <li>
+        <NavLink
+          to="/help"
+          className={({ isActive }) =>
+            isActive
+              ? "bg-white text-[#ff6867] rounded-xl p-3 flex items-center gap-2"
+              : "text-white flex items-center gap-2 p-3"
+          }
+        >
+          <FaHandsHelping className="text-2xl" /> Help
+        </NavLink>
+      </li>
+      <li>
+        <button
+          onClick={handleLogout}
+          className="text-white flex items-center gap-2 p-3 w-full text-left"
+        >
+          <MdLogout className="text-2xl" /> Logout
+        </button>
       </li>
     </>
   );
 
   return (
-    <>
-      {/* <Header /> */}
-      <div className="flex p-1 mt-15 ">
-        <div className="w-full md:w-1/5 border bg-[#ff6767] p-4 h-[calc(100vh-130px)] relative">
-          <div className="relative w-[120px] h-[120px] top-[-75px] mx-auto">
-            <img
-              className="rounded-full w-full h-full object-cover border-4 border-[#ff6767]"
-              src={profilePicture}
-              alt="Profile"
-            />
-            <Link
-              to="/changePhoto"
-              className="absolute bottom-0 right-0  p-1 rounded-full shadow-md cursor-pointer bg-[#ff6767] text-white transition border-2 border-[#ff6767]"
-              title="Edit"
-            >
-              <FaEdit />
-            </Link>
-          </div>
-
-          <div className="flex items-center justify-center gap-1 -mt-18">
-            <h2 className="text-2xl font-semibold text-white text-center">
-              {fullName}
-            </h2>
-            <Link
-              to="/changeName"
-              className="text-white cursor-pointer transition"
-              title="Edit Name"
-            >
-              <FaEdit />
-            </Link>
-          </div>
-          <div className="flex items-center justify-center gap-2 mb-5">
-            <p className="text-xl text-white text-center">{email}</p>
-            <Link
-              to="/changeEmail"
-              className="text-white cursor-pointer transition"
-              title="Edit Email"
-            >
-              <FaEdit />
-            </Link>
-          </div>
-          <ul className="text-white ">{items}</ul>
-        </div>
-        <div className="w-full">
-          <Outlet />
-        </div>
+    <div className="flex flex-col md:flex-row min-h-screen">
+      {/* Mobile Top Bar */}
+      <div className="md:hidden flex justify-between items-center bg-[#ff6767] px-4 py-3">
+        <button
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+          className="text-white text-3xl"
+        >
+          <HiBars3BottomLeft />
+        </button>
+        <h2 className="text-white text-lg font-semibold">Task Manager</h2>
       </div>
-    </>
+
+      {/* Sidebar */}
+      <div
+        className={`bg-[#ff6767] w-full md:w-1/5 p-4 transition-all duration-300 ease-in-out z-10 ${
+          sidebarOpen ? "block" : "hidden"
+        } md:block`}
+      >
+        {user && (
+          <div className="flex flex-col items-center mb-6">
+            <div className="relative w-[100px] h-[100px] mb-2">
+              <img
+                src={profilePicture}
+                alt="Profile"
+                className="rounded-full w-full h-full object-cover border-4 border-white"
+              />
+              <Link
+                to="/changePhoto"
+                className="absolute bottom-0 right-0 bg-white text-[#ff6767] p-1 rounded-full"
+                title="Edit"
+              >
+                <FaEdit />
+              </Link>
+            </div>
+            <div className="text-center text-white">
+              <div className="flex justify-center items-center gap-2">
+                <h2 className="text-xl font-semibold">{fullName}</h2>
+                <Link to="/changeName" title="Edit Name">
+                  <FaEdit className="text-white" />
+                </Link>
+              </div>
+              <div className="flex justify-center items-center gap-2 text-sm">
+                <p>{email}</p>
+                <Link to="/changeEmail" title="Edit Email">
+                  <FaEdit className="text-white" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
+        <ul className="space-y-2">{items}</ul>
+      </div>
+
+      {/* Main Content */}
+      <div className="w-full p-4">
+        <Outlet />
+      </div>
+    </div>
   );
 };
 
