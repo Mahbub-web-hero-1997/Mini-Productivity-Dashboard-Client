@@ -10,7 +10,7 @@ import IncompleteTask from "../components/incompleteTask/IncompleteTasks";
 import AllTasks from "../components/allTasks/AllTasks";
 import UpdateTask from "../components/updateTask/UpdateTask";
 import ComingSoon from "../components/commingSoon/CommingSoon";
-import MotivationalQuotes from "../components/motivitionalQuots/MotivationalQuotes";
+import MotivationalQuotes from "../components/motivationalQuots/MotivationalQuotes";
 
 const router = createBrowserRouter([
   {

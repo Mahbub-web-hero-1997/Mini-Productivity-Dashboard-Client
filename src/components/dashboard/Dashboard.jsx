@@ -10,6 +10,7 @@ import {
 import { FaPlus, FaTasks } from "react-icons/fa";
 import { AuthContext } from "../../globalState/AuthProvider";
 import { Link } from "react-router-dom";
+import MotivationalQuotes from "../motivationalQuots/MotivationalQuotes";
 
 const Dashboard = () => {
   const { user, task } = useContext(AuthContext);
@@ -29,10 +30,9 @@ const Dashboard = () => {
   // Data for total tasks (single slice)
   const totalData = [{ name: "Total Tasks", value: taskStats.total }];
 
-  // Colors for completed vs pending
-  const completionColors = ["#22c55e", "#f97316"]; // green and orange
+  const completionColors = ["#22c55e", "#f97316"];
   // Color for total tasks circle
-  const totalColors = ["#ff6767"]; // pinkish/red
+  const totalColors = ["#ff6767"];
 
   return (
     <div className="flex h-[calc(100vh-132px)] bg-gray-100 overflow-scroll scrollbar-hide">
@@ -60,6 +60,7 @@ const Dashboard = () => {
                 <FaTasks className="text-[#ff6767] text-2xl" />
                 To-Do
               </p>
+              <MotivationalQuotes />
               <Link
                 to="/addTask"
                 className="text-[#ff6867] flex items-center gap-1"

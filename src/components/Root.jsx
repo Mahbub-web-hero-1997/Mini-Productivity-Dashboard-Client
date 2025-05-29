@@ -95,7 +95,7 @@ const Root = () => {
               : "text-white flex items-center gap-2 p-3"
           }
         >
-          <MdSettings className="text-2xl" /> Settings
+          <MdSettings className="text-2xl" />
         </NavLink>
       </li>
       <li>
