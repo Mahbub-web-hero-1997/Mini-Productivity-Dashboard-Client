@@ -10,6 +10,7 @@ import IncompleteTask from "../components/incompleteTask/IncompleteTasks";
 import AllTasks from "../components/allTasks/AllTasks";
 import UpdateTask from "../components/updateTask/UpdateTask";
 import ComingSoon from "../components/commingSoon/CommingSoon";
+import MotivationalQuotes from "../components/motivitionalQuots/MotivationalQuotes";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
           fetch(
             `https://simple-task-server-eight.vercel.app/api/v1/task/single/${params.id}`
           ),
+      },
+      {
+        path: "/Quote",
+        element: <MotivationalQuotes />,
       },
       {
         path: "*",

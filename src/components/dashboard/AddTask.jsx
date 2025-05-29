@@ -39,13 +39,23 @@ const AddTask = () => {
           className="border border-[#ff6767] rounded-md p-3 w-full md:w-3/4 outline-none focus:ring-2 focus:ring-[#ff6767] transition"
           placeholder="Title"
         />
-
         <textarea
           {...register("description", { required: true })}
           type="description"
           className="border border-[#ff6767] rounded-md p-3 w-full md:w-3/4 outline-none focus:ring-2 focus:ring-[#ff6767] transition"
-          placeholder="description"
+          placeholder="Description"
         />
+
+        {/* ✅ Category select added here */}
+        <select
+          {...register("category", { required: true })}
+          className="border border-[#ff6767] rounded-md p-3 w-full md:w-3/4 outline-none focus:ring-2 focus:ring-[#ff6767] transition"
+        >
+          <option value="">-- Select a category --</option>
+          <option value="work">Daily-Task</option>
+          <option value="personal">Weekly-Task</option>
+          <option value="learning">Monthly-Task</option>
+        </select>
 
         <input
           type="submit"
